@@ -28,7 +28,7 @@
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link collapsed" href="blog.php">
+      <a class="nav-link collapsed" href="summary.php">
         <i class="bi bi-newspaper"></i>
         <span>Summary</span>
       </a>

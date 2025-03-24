@@ -11,18 +11,23 @@ if (isset($_POST['save'])) {
     $email = $_POST['email'];
     $freelance = $_POST['freelance'];
 
-    $insert = mysqli_query($conn, "INSERT INTO about (fullname, title, birthday, phone, city, email, freelance) VALUES ('$fullname', '$title', '$birthday', '$phone', '$city', '$email', '$freelance')");
-    if ($insert) {
-        header("location:about.php");
-    } else {
-        header("location:add-about.php");
+    $photo_profile = $_FILES['photo_rofile'];
+    if ($photo['error'] == 0) {
+        $fileName = uniqid() . "_" . basename($photo['name']);
+        $filePath = "../assets/uploads/" . $fileName;
+        move_uploaded_file($photo['tmp_name'], $filePath);
+
+        $insert = mysqli_query($conn, "INSERT INTO about (fullname, title, birthday, phone, city, email, freelance, photo_profile) VALUES ('$fullname', '$title', '$birthday', '$phone', '$city', '$email', '$freelance', '$fileName')");
+        if ($insert) {
+            header("location:about.php");
+        } else {
+            header("location:add-about.php");
+        }
     }
 }
 
-
 if (isset($_GET['idEdit'])) {
     $id = $_GET['idEdit'];
-
     $showAbout = mysqli_query($conn, "SELECT * FROM about WHERE id = '$id'");
     $row = mysqli_fetch_assoc($showAbout);
 }
@@ -36,14 +41,22 @@ if (isset($_POST['edit'])) {
     $email = $_POST['email'];
     $freelance = $_POST['freelance'];
 
-    $insert = mysqli_query($conn, "UPDATE about SET fullname='$fullname', title='$title', birthday='$birthday', phone='$phone', city='$city', email='$email', freelance='$freelance' WHERE id='$id'");
-    header("location:about.php");
+    $photo_profile = $_FILES['photo_profile'];
+    if (file_exists("../assets/uploads/" . $row['photo'])) {
+        unlink("../assets/uploads/" . $row['photo']);
+    }
+    if ($photo['error'] == 0) {
+        $fileName = uniqid() . "_" . basename($photo['name']);
+        $filePath = "../assets/uploads/" . $fileName;
+        move_uploaded_file($photo['tmp_name'], $filePath);
+    }
+
+    $q_update = mysqli_query($conn, "UPDATE about SET fullname='$fullname', title='$title', birthday='$birthday', phone='$phone', city='$city', email='$email', freelance='$freelance', photo_profile='$fileName' WHERE id='$id'");
+
+    if ($q_update) {
+        header("location:about.php");
+    }
 }
-
-
-
-
-
 ?>
 
 <!DOCTYPE html>
@@ -53,7 +66,7 @@ if (isset($_POST['edit'])) {
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>Components / Accordion - NiceAdmin Bootstrap Template</title>
+    <title>ADD | EDIT Resume</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
@@ -107,6 +120,14 @@ if (isset($_POST['edit'])) {
                         <div class="card-body">
                             <h5 class="card-title"><?= isset($_GET['idEdit']) ? 'EDIT RESUME' : 'ADD' ?></h5>
                             <form action="" method="post" enctype="multipart/form-data">
+                                <div class="row mb-3">
+                                    <div class="col-sm-2">
+                                        <label for="">Photo</label>
+                                    </div>
+                                    <div class="col-sm-10">
+                                        <input type="file" class="form-control" name="photo_profile">
+                                    </div>
+                                </div>
                                 <div class="row mb-3">
                                     <div class="col-sm-2">
                                         <label for="">Fullname</label>

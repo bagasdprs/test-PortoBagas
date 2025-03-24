@@ -80,6 +80,7 @@ if (isset($_GET['delete'])) {
                                     <thead>
                                         <tr>
                                             <th>No</th>
+                                            <th>Photo</th>
                                             <th>Fullname</th>
                                             <th>Title</th>
                                             <th>Birthday</th>
@@ -97,6 +98,7 @@ if (isset($_GET['delete'])) {
                                         ?>
                                             <tr>
                                                 <td><?= $no++ ?></td>
+                                                <td><img width="200" src="../assets/uploads/<?= $row['photo_profile'] ?>" alt=""></td>
                                                 <td><?= $row['fullname'] ?></td>
                                                 <td><?= $row['title'] ?></td>
                                                 <td><?= $row['birthday'] ?></td>
