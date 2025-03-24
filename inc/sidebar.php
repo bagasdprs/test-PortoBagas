@@ -7,16 +7,36 @@
         <span>Dashboard</span>
       </a>
     </li><!-- End Dashboard Nav -->
+
+
     <li class="nav-item">
-      <a class="nav-link collapsed" href="resume.php">
-        <i class="bi bi-file-person-fill"></i>
+      <a class="nav-link collapsed" href="about.php">
+        <i class="bi bi-eyeglasses"></i>
+        <span>About</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="skills.php">
+        <i class="bi bi-eyeglasses"></i>
+        <span>Skills</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="blog.php">
+        <i class="bi bi-newspaper"></i>
         <span>Resume</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="blog.php">
+        <i class="bi bi-newspaper"></i>
+        <span>Summary</span>
       </a>
     </li>
     <li class="nav-item">
       <a class="nav-link collapsed" href="project.php">
         <i class="bi bi-cast"></i>
-        <span>Project</span>
+        <span>Portfolio</span>
       </a>
     </li>
     <li class="nav-item">
@@ -25,12 +45,7 @@
         <span>Services</span>
       </a>
     </li>
-    <li class="nav-item">
-      <a class="nav-link collapsed" href="blog.php">
-        <i class="bi bi-newspaper"></i>
-        <span>Blog</span>
-      </a>
-    </li>
+
     <li class="nav-item">
       <a class="nav-link collapsed" href="contact.php">
         <i class="bi bi-person-lines-fill"></i>
@@ -38,15 +53,10 @@
       </a>
     </li>
 
-    <li class="nav-item">
-      <a class="nav-link collapsed" href="skill.php">
-        <i class="bi bi-eyeglasses"></i>
-        <span>Skills</span>
-      </a>
-    </li>
+
 
     <li class="nav-item">
-      <a class="nav-link collapsed" href="setting.php?sibedar=setting">
+      <a class="nav-link collapsed" href="settings.php?sibedar=settings">
         <i class="bi bi-gear-fill"></i>
         <span>Settings</span>
       </a>

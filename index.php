@@ -1,4 +1,26 @@
-<?php ?>
+<?php
+// session_start();
+// require_once '../inc/conn.php';
+
+// //  Button Login Click
+// if (isset($_POST['login'])) {
+//   $email = $_POST['email'];
+//   $password = $_POST['password'];
+
+//   // Cari atau Pilih didalam tabel user dimana nilai email adalah diambil dari inputan dan nilai password diambil dari input'an
+//   $queryLogin = mysqli_query($conn, "SELECT * FROM users WHERE email = '$email' AND password='$password'");
+//   // Jika data ada, maka buat session dan redirect ke dashboard
+//   if (mysqli_num_rows($queryLogin) > 0) {
+//     $row = mysqli_fetch_assoc($queryLogin);
+//     $_SESSION['Email'] = $email;
+//     $_SESSION['Fullname'] = $row['fullname'];
+//     header("location:admin/index.php");
+//   } else {
+//     // Kalau gagal, login redirect ke login
+//     header("location:login.php?error=login");
+//   }
+// }
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -808,7 +830,8 @@
         <a href=""><i class="bi bi-twitter-x"></i></a>
         <a href=""><i class="bi bi-facebook"></i></a>
         <a href=""><i class="bi bi-instagram"></i></a>
-        <a href=""><i class="bi bi-skype"></i></a>
+        <a href=""><i class="bi bi-dribbble"></i></a>
+        <a href=""><i class="bi bi-github"></i></a>
         <a href=""><i class="bi bi-linkedin"></i></a>
       </div>
       <div class="container">

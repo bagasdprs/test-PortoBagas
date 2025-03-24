@@ -6,6 +6,7 @@ include 'inc/conn.php';
 if (isset($_POST['login'])) {
   $email = $_POST['email'];
   $password = $_POST['password'];
+  // $cek = $email . $password;
 
   // Cari atau Pilih didalam tabel user dimana nilai email adalah diambil dari inputan dan nilai password diambil dari input'an
   $queryLogin = mysqli_query($conn, "SELECT * FROM users WHERE email = '$email' AND password='$password'");
@@ -14,7 +15,7 @@ if (isset($_POST['login'])) {
     $row = mysqli_fetch_assoc($queryLogin);
     $_SESSION['Email'] = $email;
     $_SESSION['Fullname'] = $row['fullname'];
-    header("location:admin/index.php");
+    header("Location: admin/index.php?login=success");
   } else {
     // Kalau gagal, login redirect ke login
     header("location:login.php?error=login");
@@ -30,7 +31,7 @@ if (isset($_POST['login'])) {
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Pages / Login - NiceAdmin Bootstrap Template</title>
+  <title>Login Form</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -83,14 +84,14 @@ if (isset($_POST['login'])) {
                     <p class="text-center small">Enter your username & password to login</p>
                   </div>
 
-                  <form class="row g-3 needs-validation" novalidate>
+                  <form class="row g-3 needs-validation" novalidate method="post">
 
                     <div class="col-12">
-                      <label for="yourUsername" class="form-label">Username</label>
+                      <label for="yourUsername" class="form-label">Email</label>
                       <div class="input-group has-validation">
 
-                        <input type="text" name="username" class="form-control" id="yourUsername" required>
-                        <div class="invalid-feedback">Please enter your username.</div>
+                        <input type="text" name="email" class="form-control" id="yourEmail" required>
+                        <div class="invalid-feedback">Please enter your email.</div>
                       </div>
                     </div>
 
@@ -101,7 +102,7 @@ if (isset($_POST['login'])) {
                     </div>
 
                     <div class="col-12">
-                      <button class="btn btn-primary w-100" type="submit">Login</button>
+                      <button class="btn btn-primary w-100" type="submit" name="login">Login</button>
                     </div>
 
                   </form>
