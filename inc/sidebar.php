@@ -11,37 +11,37 @@
 
     <li class="nav-item">
       <a class="nav-link collapsed" href="about.php">
-        <i class="bi bi-eyeglasses"></i>
+        <i class="bi bi-file-person-fill"></i>
         <span>About</span>
       </a>
     </li>
     <li class="nav-item">
       <a class="nav-link collapsed" href="skills.php">
-        <i class="bi bi-eyeglasses"></i>
+        <i class="bi bi-lightbulb"></i>
         <span>Skills</span>
       </a>
     </li>
     <li class="nav-item">
       <a class="nav-link collapsed" href="education.php">
-        <i class="bi bi-newspaper"></i>
+        <i class="bi bi-backpack2"></i>
         <span>Education</span>
       </a>
     </li>
     <li class="nav-item">
       <a class="nav-link collapsed" href="professional-exp.php">
-        <i class="bi bi-newspaper"></i>
+        <i class="bi bi-briefcase"></i>
         <span>Experience</span>
       </a>
     </li>
     <li class="nav-item">
       <a class="nav-link collapsed" href="summary.php">
-        <i class="bi bi-newspaper"></i>
+        <i class="bi bi-file-earmark-text"></i>
         <span>Summary</span>
       </a>
     </li>
     <li class="nav-item">
       <a class="nav-link collapsed" href="project.php">
-        <i class="bi bi-cast"></i>
+        <i class="bi bi-folder"></i>
         <span>Projects</span>
       </a>
     </li>
@@ -53,7 +53,7 @@
     </li>
     <li class="nav-item">
       <a class="nav-link collapsed" href="testimonial.php">
-        <i class="bi bi-tools"></i>
+        <i class="bi bi-chat-dots"></i>
         <span>Testimonials</span>
       </a>
     </li>
@@ -65,13 +65,5 @@
       </a>
     </li>
 
-
-
-    <li class="nav-item">
-      <a class="nav-link collapsed" href="settings.php?sibedar=settings">
-        <i class="bi bi-gear-fill"></i>
-        <span>Settings</span>
-      </a>
-    </li>
   </ul>
 </aside>
