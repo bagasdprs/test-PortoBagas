@@ -87,7 +87,8 @@ if (isset($_GET['delete'])) {
                                             <th>Phone Number</th>
                                             <th>City</th>
                                             <th>Email</th>
-                                            <th>Freelance</th>
+                                            <th>About Self</th>
+                                            <th>Available for Freelance?</th>
                                             <th>Actions</th>
                                         </tr>
                                     </thead>
@@ -105,6 +106,7 @@ if (isset($_GET['delete'])) {
                                                 <td><?= $row['phone'] ?></td>
                                                 <td><?= $row['city'] ?></td>
                                                 <td><?= $row['email'] ?></td>
+                                                <td><?= $row['about_self'] ?></td>
                                                 <td><?php
                                                     switch ($row['freelance']) {
                                                         case '1':

@@ -22,9 +22,15 @@
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link collapsed" href="blog.php">
+      <a class="nav-link collapsed" href="education.php">
         <i class="bi bi-newspaper"></i>
-        <span>Resume</span>
+        <span>Education</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="professional-exp.php">
+        <i class="bi bi-newspaper"></i>
+        <span>Experience</span>
       </a>
     </li>
     <li class="nav-item">
@@ -36,13 +42,19 @@
     <li class="nav-item">
       <a class="nav-link collapsed" href="project.php">
         <i class="bi bi-cast"></i>
-        <span>Portfolio</span>
+        <span>Projects</span>
       </a>
     </li>
     <li class="nav-item">
       <a class="nav-link collapsed" href="services.php">
         <i class="bi bi-tools"></i>
         <span>Services</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="testimonial.php">
+        <i class="bi bi-tools"></i>
+        <span>Testimonials</span>
       </a>
     </li>
 

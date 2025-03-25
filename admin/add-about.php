@@ -9,15 +9,16 @@ if (isset($_POST['save'])) {
     $phone = $_POST['phone'];
     $city = $_POST['city'];
     $email = $_POST['email'];
+    $about_self = $_POST['about_self'];
     $freelance = $_POST['freelance'];
 
-    $photo_profile = $_FILES['photo_rofile'];
-    if ($photo['error'] == 0) {
-        $fileName = uniqid() . "_" . basename($photo['name']);
+    $photo_profile = $_FILES['photo_profile'];
+    if ($photo_profile['error'] == 0) {
+        $fileName = uniqid() . "_" . basename($photo_profile['name']);
         $filePath = "../assets/uploads/" . $fileName;
-        move_uploaded_file($photo['tmp_name'], $filePath);
+        move_uploaded_file($photo_profile['tmp_name'], $filePath);
 
-        $insert = mysqli_query($conn, "INSERT INTO about (fullname, title, birthday, phone, city, email, freelance, photo_profile) VALUES ('$fullname', '$title', '$birthday', '$phone', '$city', '$email', '$freelance', '$fileName')");
+        $insert = mysqli_query($conn, "INSERT INTO about (fullname, title, birthday, phone, city, email, about_self, freelance, photo_profile) VALUES ('$fullname', '$title', '$birthday', '$phone', '$city', '$email', '$about_self', '$freelance', '$fileName')");
         if ($insert) {
             header("location:about.php");
         } else {
@@ -39,19 +40,22 @@ if (isset($_POST['edit'])) {
     $phone = $_POST['phone'];
     $city = $_POST['city'];
     $email = $_POST['email'];
+    $about_self = $_POST['about_self'];
     $freelance = $_POST['freelance'];
 
-    $photo_profile = $_FILES['photo_profile'];
-    if (file_exists("../assets/uploads/" . $row['photo'])) {
-        unlink("../assets/uploads/" . $row['photo']);
-    }
-    if ($photo['error'] == 0) {
-        $fileName = uniqid() . "_" . basename($photo['name']);
-        $filePath = "../assets/uploads/" . $fileName;
-        move_uploaded_file($photo['tmp_name'], $filePath);
+
+    if (file_exists("../assets/uploads/" . $row['photo_profile'])) {
+        unlink("../assets/uploads/" . $row['photo_profile']);
     }
 
-    $q_update = mysqli_query($conn, "UPDATE about SET fullname='$fullname', title='$title', birthday='$birthday', phone='$phone', city='$city', email='$email', freelance='$freelance', photo_profile='$fileName' WHERE id='$id'");
+    if ($_FILES['photo_profile']['name'] != '') {
+        $photo_profile = $_FILES['photo_profile'];
+        $fileName = uniqid() . "_" . basename($photo_profile['name']);
+        $filePath = "../assets/uploads/" . $fileName;
+        move_uploaded_file($photo_profile['tmp_name'], $filePath);
+    }
+
+    $q_update = mysqli_query($conn, "UPDATE about SET fullname='$fullname', title='$title', birthday='$birthday', phone='$phone', city='$city', email='$email', about_self='$about_self', freelance='$freelance', photo_profile='$fileName' WHERE id='$id'");
 
     if ($q_update) {
         header("location:about.php");
@@ -111,11 +115,9 @@ if (isset($_POST['edit'])) {
     <!-- End Sidebar-->
 
     <main id="main" class="main">
-
         <section class="section">
             <div class="row">
                 <div class="col-lg-12">
-
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title"><?= isset($_GET['idEdit']) ? 'EDIT RESUME' : 'ADD' ?></h5>
@@ -184,7 +186,15 @@ if (isset($_POST['edit'])) {
                                 </div>
                                 <div class="row mb-3">
                                     <div class="col-sm-2">
-                                        <label for="">Freelance</label>
+                                        <label for="">About Self</label>
+                                    </div>
+                                    <div class="col-sm-10">
+                                        <textarea name="about_self" id="" class="form-control" value="<?= isset($_GET['idEdit']) ? $row['about_self'] : '' ?>"></textarea>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-sm-2">
+                                        <label for="">Available</label>
                                     </div>
                                     <div class="col-sm-10">
                                         <select name="freelance" id="" class="form-control">
