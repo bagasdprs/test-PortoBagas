@@ -6,9 +6,7 @@
         <i class="bi bi-grid"></i>
         <span>Dashboard</span>
       </a>
-    </li><!-- End Dashboard Nav -->
-
-
+    </li>
     <li class="nav-item">
       <a class="nav-link collapsed" href="about.php">
         <i class="bi bi-file-person-fill"></i>

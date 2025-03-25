@@ -1,11 +1,17 @@
 <?php
 session_start();
+require_once "../inc/conn.php";
 
-// middleware
-if (empty($_SESSION['Email'])) {
-  header("location:../login.php");
+$contacts = mysqli_query($conn, "SELECT * FROM contact");
+$rows = mysqli_fetch_all($contacts, MYSQLI_ASSOC);
+
+if (isset($_GET['delete'])) {
+  $id = $_GET['delete'];
+  $delete = mysqli_query($conn, "DELETE FROM contact WHERE id = '$id'");
+  if ($delete) {
+    header('location:contact.php?hapus=success');
+  }
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -15,7 +21,7 @@ if (empty($_SESSION['Email'])) {
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Data Table Portfolio</title>
+  <title>Contact</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -25,7 +31,9 @@ if (empty($_SESSION['Email'])) {
 
   <!-- Google Fonts -->
   <link href="https://fonts.gstatic.com" rel="preconnect">
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+    rel="stylesheet">
 
   <!-- Vendor CSS Files -->
   <link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -38,6 +46,9 @@ if (empty($_SESSION['Email'])) {
 
   <!-- Template Main CSS File -->
   <link href="../assets/css/style.css" rel="stylesheet">
+
+
+
 </head>
 
 <body>
@@ -56,44 +67,55 @@ if (empty($_SESSION['Email'])) {
 
   <main id="main" class="main">
 
-    <div class="pagetitle">
-      <h1>Blank Page</h1>
-      <nav>
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-          <li class="breadcrumb-item">Pages</li>
-          <li class="breadcrumb-item active">Blank</li>
-        </ol>
-      </nav>
-    </div><!-- End Page Title -->
-
     <section class="section">
       <div class="row">
-        <div class="col-lg-6">
+        <div class="col-lg-12">
 
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">Example Card</h5>
-              <p>This is an examle page with no contrnt. You can use it as a starter for your custom pages.</p>
+              <h5 class="card-title">Contact Me</h5>
+              <div class="table table-responsive">
+                <a href="add-contact.php" class="btn btn-primary mb-2">Create</a>
+                <table class="table table-bordered text-center" id="myTable">
+                  <thead>
+                    <tr>
+                      <th>No</th>
+                      <th>Fullname</th>
+                      <th>Email</th>
+                      <th>Subject</th>
+                      <th>Message</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <?php
+                    $no = 1;
+                    foreach ($rows as $row) {
+                    ?>
+                      <tr>
+                        <td><?= $no++ ?></td>
+                        <td><?= $row['fullname'] ?></td>
+                        <td><?= $row['email'] ?></td>
+                        <td><?= $row['subject'] ?></td>
+                        <td><?= $row['message'] ?></td>
+                        <td>
+                          <a href="add-contact.php?idEdit=<?= $row['id'] ?>" class="btn btn-success btn-sm">Edit</a>
+                          <a href="?delete=<?= $row['id'] ?>" onclick="return confirm('Are u sure delete this one?')" class="btn btn-danger btn-sm">Delete</a>
+                        </td>
+                      </tr>
+                    <?php
+                    }
+                    ?>
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
-
-        </div>
-
-        <div class="col-lg-6">
-
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Example Card</h5>
-              <p>This is an examle page with no contrnt. You can use it as a starter for your custom pages.</p>
-            </div>
-          </div>
-
         </div>
       </div>
     </section>
-
-  </main><!-- End #main -->
+  </main>
+  <!-- End #main -->
 
   <!-- ======= Footer ======= -->
   <?php
@@ -101,7 +123,8 @@ if (empty($_SESSION['Email'])) {
   ?>
   <!-- End Footer -->
 
-  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+      class="bi bi-arrow-up-short"></i></a>
 
   <!-- Vendor JS Files -->
   <script src="../assets/vendor/apexcharts/apexcharts.min.js"></script>
@@ -115,7 +138,6 @@ if (empty($_SESSION['Email'])) {
 
   <!-- Template Main JS File -->
   <script src="../assets/js/main.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 

@@ -10,7 +10,7 @@ if (isset($_POST['save'])) {
     $end_date = $_POST['end_date'];
     $job_desc = $_POST['job_desc'];
 
-    $insert = mysqli_query($conn, "INSERT INTO professional_exp (job_title, company_name, employment_type, start_date, end_date, job_desc) 
+    $insert = mysqli_query($conn, "INSERT INTO professional_exp (job_title, company_name, employment_type, start_date, end_date, job_desc)
     VALUES ('$job_title', '$company_name', '$employment_type', '$start_date', '$end_date', '$job_desc')");
     if ($insert) {
         header("location:professional-exp.php");
